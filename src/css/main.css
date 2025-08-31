@@ -1,0 +1,24 @@
+/* Tailwind CSS v4 - すべてCSSで設定 */
+@import "tailwindcss";
+/* 投稿コンテンツ用スタイル */
+@import "./editor.css";
+/* Source指定 - PHPファイルをスキャン対象に */
+@source "../../../**/*.php";
+
+/* Theme設定 - CSS内で定義 */
+@theme {
+    /* カスタムカラー */
+    --color-primary: #ff6b6b;
+    --color-secondary: #4ecdc4;
+    --color-accent: #ffd93d;
+
+    /* カスタムフォント */
+    --font-sans: 'Noto Sans JP', sans-serif;
+    --font-display: 'Kosugi Maru', sans-serif;
+
+    /* カスタムスペーシング */
+    --spacing-section: 5rem;
+
+    /* カスタムアニメーション */
+    --animate-float: float 3s ease-in-out infinite;
+}
