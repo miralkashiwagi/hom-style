@@ -7,18 +7,38 @@
 
 /* Theme設定 - CSS内で定義 */
 @theme {
-    /* カスタムカラー */
-    --color-primary: #ff6b6b;
-    --color-secondary: #4ecdc4;
-    --color-accent: #ffd93d;
+  /* Colors */
+  --color-black: #000000;
+  --color-white: #fcfaf7;
+  --color-gray-bg: #f2efe8;
+  --color-gray-text: #555555;
 
-    /* カスタムフォント */
-    --font-sans: 'Noto Sans JP', sans-serif;
-    --font-display: 'Kosugi Maru', sans-serif;
+  /* Typography */
+  --font-base:
+    "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Noto Sans JP", Meiryo, sans-serif;
+  --font-en: "Josefin Sans", sans-serif;
 
-    /* カスタムスペーシング */
-    --spacing-section: 5rem;
+  --text-2xs: 8px;
+  --text-xs: 10px;
+  --text-sm: 12px;
+  --text-md: 14px;
+  --text-lg: 18px;
+  --text-xl: 24px;
 
-    /* カスタムアニメーション */
-    --animate-float: float 3s ease-in-out infinite;
+  /* Radius */
+  --radius-md: 6px;
+  --radius-xl: 12px;
+  --radius-full: infinity;
+
+  /* Spacing */
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 40px;
+  --spacing-3xl: 60px;
+  --spacing-4xl: 80px;
 }
