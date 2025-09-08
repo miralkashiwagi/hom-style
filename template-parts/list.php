@@ -3,9 +3,7 @@
         the_post();?>
     <a href="<?php the_permalink();?>" class="block">
         <div class="aspect-[348/482] rounded-md overflow-hidden">
-            <?php if (has_post_thumbnail()):
-                the_post_thumbnail( 'full', array('class' => 'object-cover w-full h-full'));
-            endif; ?>
+            <img src="<?php echo wp_get_attachment_image_url( get_lzb_meta("main-image")['id'], "large");?>" alt="" class="w-full h-full object-cover">
         </div>
         <div class="p-xs pb-0">
             <p class="text-2xs text-gray-text">
@@ -18,3 +16,4 @@
     </a>
     <?php endwhile; ?>
 </div>
+<?php the_posts_pagination();?>
