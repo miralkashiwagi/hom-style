@@ -37,7 +37,7 @@ function register_my_taxes_category_color() {
         "show_in_quick_edit" => true,
         "sort" => true,
         "show_in_graphql" => false,
-        "default_term" => ['name' => 'uncategorized'],
+        "default_term" => false,
     ];
     register_taxonomy( "category_color", [ "post" ], $args );
 }
@@ -77,7 +77,7 @@ function register_my_taxes_category_style() {
         "show_in_quick_edit" => true,
         "sort" => true,
         "show_in_graphql" => false,
-        "default_term" => ['name' => 'uncategorized'],
+        "default_term" => false,
     ];
     register_taxonomy( "category_style", [ "post" ], $args );
 }

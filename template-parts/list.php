@@ -5,13 +5,36 @@
         <div class="aspect-[348/482] rounded-md overflow-hidden">
             <img src="<?php echo wp_get_attachment_image_url( get_lzb_meta("main-image")['id'], "large");?>" alt="" class="w-full h-full object-cover">
         </div>
-        <div class="p-xs pb-0">
-            <p class="text-2xs text-gray-text">
-                <?php the_author();?>
-            </p>
-            <p class="text-md">
-                <?php the_title();?>
-            </p>
+        <div class="flex flex-col gap-xs">
+            <div class="p-xs pb-0">
+                <p class="text-2xs text-gray-text">
+                    <?php the_author();?>
+                </p>
+                <p class="text-md">
+                    <?php the_title();?>
+                </p>
+            </div>
+            <ul class="flex justify-end-safe flex-wrap gap-2xs text-xs text-gray-text">
+                <?php
+                $tax_colors = get_the_terms(get_the_ID(), "category_color");
+                $tax_styles = get_the_terms(get_the_ID(), "category_style");
+                ?>
+
+                <?php if (!empty($tax_colors)): ?>
+                    <?php foreach ($tax_colors as $tax_color): ?>
+                        <li>
+                            <span class="block rounded-full bg-gray-bg px-xs py-2xs"><?php echo $tax_color->name;?></span>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <?php if (!empty($tax_styles)): ?>
+                    <?php foreach ($tax_styles as $tax_style): ?>
+                        <li>
+                            <span class="block rounded-full bg-gray-bg px-xs py-2xs"><?php echo $tax_style->name;?></span>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </ul>
         </div>
     </a>
     <?php endwhile; ?>

@@ -7,38 +7,39 @@
 
 /* Theme設定 - CSS内で定義 */
 @theme {
-  /* Colors */
-  --color-black: #000000;
-  --color-white: #fcfaf7;
-  --color-gray-bg: #f2efe8;
-  --color-gray-text: #555555;
+    /* Colors */
+    --color-black: #000000;
+    --color-white: #fcfaf7;
+    --color-gray-bg: #f2efe8;
+    --color-gray-text: #555555;
 
-  /* Typography */
-  --font-base:
-    "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    /* Typography */
+    --font-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
     "Noto Sans JP", Meiryo, sans-serif;
-  --font-en: "Josefin Sans", sans-serif;
+    --font-en: "Josefin Sans", sans-serif;
 
-  --text-2xs: 8px;
-  --text-xs: 10px;
-  --text-sm: 12px;
-  --text-md: 14px;
-  --text-lg: 18px;
-  --text-xl: 24px;
+    --text-2xs: 8px;
+    --text-xs: 10px;
+    --text-sm: 12px;
+    --text-md: 14px;
+    --text-lg: 18px;
+    --text-xl: 24px;
 
-  /* Radius */
-  --radius-md: 6px;
-  --radius-xl: 12px;
-  --radius-full: infinity;
+    /* Radius */
+    --radius-md: 6px;
+    --radius-xl: 12px;
 
-  /* Spacing */
-  --spacing-2xs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 20px;
-  --spacing-xl: 24px;
-  --spacing-2xl: 40px;
-  --spacing-3xl: 60px;
-  --spacing-4xl: 80px;
+    /* leading */
+    --leading-heading: 1.5;
+
+    /* Spacing */
+    --spacing-2xs: 4px;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 20px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 40px;
+    --spacing-3xl: 60px;
+    --spacing-4xl: 80px;
 }
