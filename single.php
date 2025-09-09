@@ -22,13 +22,16 @@ if (have_posts()):
 
         <h3 class="font-en text-lg mt-xl mb-2xs">Tag</h3>
         <div class="flex flex-wrap gap-2xs items-end justify-between">
-
+            <?php
+            $tax_colors = get_the_terms(get_the_ID(), "category_color");
+            $tax_styles = get_the_terms(get_the_ID(), "category_style");
+            ?>
+            <?php /* どちらのタグも無ければ、タグ未設定ですを出す */
+            if (empty($tax_colors) && empty($tax_styles)) {
+                echo "<p class='text-sm text-gray-text'>タグは未設定です</p>";
+            }
+            ?>
             <ul class="flex flex-wrap gap-sm text-sm text-gray-text">
-                <?php
-                $tax_colors = get_the_terms(get_the_ID(), "category_color");
-                $tax_styles = get_the_terms(get_the_ID(), "category_style");
-                ?>
-
                 <?php if (!empty($tax_colors)): ?>
                     <?php foreach ($tax_colors as $tax_color): ?>
                         <li>
@@ -55,11 +58,13 @@ if (have_posts()):
             </div>
         </div>
 
-    <div class="mt-3xl">
-        <a href="<?php echo get_post_type_archive_link("post")?>">
-            一覧に戻る
-        </a>
-    </div>
+        <div class="mt-3xl text-center">
+            <a href="<?php echo get_post_type_archive_link("post") ?>"
+               class="text-sm inline-flex gap-sm items-center rounded-full py-sm pl-md pr-xl bg-gray-bg">
+                <span class="font-icon text-md">chevron_left</span>
+                一覧に戻る
+            </a>
+        </div>
     <?php
     endwhile;
 endif;

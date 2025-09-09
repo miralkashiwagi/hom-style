@@ -12,7 +12,7 @@
     $site_title = get_bloginfo("name");
     $page_title = wp_get_document_title();
     $canonical_url =
-        is_front_page() || is_home() ? home_url("/") : wp_get_canonical_url();
+            is_front_page() || is_home() ? home_url("/") : wp_get_canonical_url();
 
     // og:type の判定
     $og_type = is_front_page() || is_home() ? "website" : "article";
@@ -22,7 +22,7 @@
         // 個別投稿・固定ページ（トップページではない）
         $page_name = get_the_title();
         $og_description =
-            $site_title . "の「" . $page_name . "」のページです。";
+                $site_title . "の「" . $page_name . "」のページです。";
     } else {
         // トップページまたはその他のページ
         $og_description = get_bloginfo("description");
@@ -43,23 +43,28 @@
     <meta property="og:type" content="<?php echo esc_attr($og_type); ?>">
     <meta property="og:title" content="<?php echo esc_attr($page_title); ?>">
     <meta property="og:description" content="<?php echo esc_attr(
-        $og_description,
+            $og_description,
     ); ?>">
     <meta property="og:site_name" content="<?php echo esc_attr(
-        $site_title,
+            $site_title,
     ); ?>">
     <meta property="og:image" content="<?php echo esc_url($og_image); ?>">
     <?php wp_head(); ?>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"  rel="preload" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"  rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+          rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+          rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="preload" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" media="print"
+          onload="this.media='all'">
 </head>
-<body <?php body_class(); ?>>
+<body <?php body_class("bg-gray-bg"); ?>>
 <?php wp_body_open(); ?>
-<div class="bg-gray-bg leading-[1.5]">
+<div class="bg-gray-bg leading-heading">
     <header class="js-drawer-header bg-white sticky top-0 z-50">
-        <div class="flex justify-between items-center px-lg py-xl ">
+        <div class="flex justify-between items-center px-lg py-xl max-w-[400px] mx-auto">
             <h1 class="nonexistent-class">
                 <a href="<?php echo home_url(); ?>">
                     <img src="<?php echo get_theme_file_uri(); ?>/assets/images/logo.svg" alt="Hom Style" width="166"
@@ -69,28 +74,79 @@
             <button type="button"
                     class="js-drawer-toggle group relative inline-block h-[44px] w-[64px] cursor-pointer appearance-none rounded-md border-[2px] border-black bg-transparent"
                     aria-expanded="false" aria-controls="drawer">
-          <span class="absolute inset-0 m-auto h-[2px] w-[32px] rounded-md bg-black transition-all duration-300 ease-in-out
-                       group-aria-[expanded=true]:bg-transparent
-                       before:absolute before:-top-[7px] before:block before:h-full before:w-full before:rounded-md before:bg-black before:transition-all before:duration-300 before:ease-in-out before:content-['']
-                       group-aria-[expanded=true]:before:top-0 group-aria-[expanded=true]:before:rotate-45
-                       after:absolute after:top-[7px] after:block after:h-full after:w-full after:rounded-md after:bg-black after:transition-all after:duration-300 after:ease-in-out after:content-['']
-                       group-aria-[expanded=true]:after:top-0 group-aria-[expanded=true]:after:-rotate-45">
-            <span class="sr-only">
-              メニューを開閉する
-            </span>
-          </span>
+              <span class="absolute inset-0 m-auto h-[2px] w-[32px] rounded-md bg-black transition-all duration-300 ease-in-out
+                           group-aria-[expanded=true]:bg-transparent
+                           before:absolute before:-top-[7px] before:block before:h-full before:w-full before:rounded-md before:bg-black before:transition-all before:duration-300 before:ease-in-out before:content-['']
+                           group-aria-[expanded=true]:before:top-0 group-aria-[expanded=true]:before:rotate-45
+                           after:absolute after:top-[7px] after:block after:h-full after:w-full after:rounded-md after:bg-black after:transition-all after:duration-300 after:ease-in-out after:content-['']
+                           group-aria-[expanded=true]:after:top-0 group-aria-[expanded=true]:after:-rotate-45">
+                <span class="sr-only">
+                  メニューを開閉する
+                </span>
+              </span>
             </button>
         </div>
     </header>
-    <dialog id="drawer" class="js-drawer-dialog w-full h-full max-w-full max-h-full bg-white">
-        <nav aria-label="メインメニュー">
+    <dialog id="drawer" class="js-drawer-dialog w-full h-full max-w-full max-h-full bg-gray-bg">
+        <nav aria-label="メインメニュー" class="max-w-[400px] mx-auto px-[26px] pt-xl pb-3xl bg-white">
             <?php wp_nav_menu([
                     "theme_location" => "main-menu",
                     "link_before" => "<span>",
                     "link_after" => "</span>",
             ]); ?>
-            <div id="search"><?php get_search_form(); ?></div>
+            <div class="">
+                <h3 class="font-en text-xl mb-2xs">Text Search</h3>
+                <div id="search"><?php get_search_form(); ?></div>
+            </div>
+            <div class="mt-xl">
+                <h3 class="font-en text-xl mb-2xs">Color</h3>
+                <?php $color_terms = get_terms("category_color"); ?>
+                <?php if (!empty($color_terms)): ?>
+                    <ul class="flex flex-wrap gap-sm">
+                        <?php foreach ($color_terms as $color_term): ?>
+                            <li>
+                                <a href="<?php echo get_term_link($color_term->term_id); ?>"
+                                   class="block rounded-full bg-gray-bg px-md py-sm"><?php echo $color_term->name; ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+            <div class="mt-xl">
+                <h3 class="font-en text-xl mb-2xs">Style</h3>
+                <?php $style_terms = get_terms("category_style"); ?>
+                <?php if (!empty($style_terms)): ?>
+                    <ul class="flex flex-wrap gap-sm">
+                        <?php foreach ($style_terms as $style_term): ?>
+                            <li>
+                                <a href="<?php echo get_term_link($style_term->term_id); ?>"
+                                   class="block rounded-full bg-gray-bg px-md py-sm"><?php echo $style_term->name; ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+            <div class="mt-xl">
+                <h3 class="font-en text-xl mb-2xs">Author</h3>
+                <?php //投稿を持っているユーザーの一覧
+                    $author_ids = get_users(
+                            [
+                                    "has_published_posts" => true
+                            ]
+                    );
+                ?>
+                <?php if (!empty($author_ids)): ?>
+                    <ul class="flex flex-wrap gap-sm">
+                        <?php foreach ($author_ids as $author_id): ?>
+                            <li>
+                                <a href="<?php echo get_author_posts_url($author_id->ID); ?>"
+                                   class="block rounded-full bg-gray-bg px-md py-sm"><?php echo $author_id->display_name; ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
         </nav>
     </dialog>
     <div class="">
-        <main  class="max-w-[400px] mx-auto bg-white px-[26px] py-xl">
+        <main class="max-w-[400px] mx-auto bg-white px-[26px] py-xl">
