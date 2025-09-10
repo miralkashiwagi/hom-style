@@ -83,8 +83,42 @@ function register_my_taxes_category_style() {
 }
 add_action( 'init', 'register_my_taxes_category_style' );
 
-
-
+add_action( 'add_meta_boxes', function() {
+    add_meta_box(
+        'category_stylediv',          // ID
+        'スタイルカテゴリー',           // タイトル
+        'post_categories_meta_box',   // 階層型タクソノミー用のコールバック
+        'post',                       // 投稿タイプ
+        'normal',                     // 表示位置（本文下）
+        'default',                    // 優先度
+        [ 'taxonomy' => 'category_style' ] // ← これを指定しないと表示されない！
+    );
+    add_meta_box(
+        'category_colordiv',          // ID
+        '色カテゴリー',           // タイトル
+        'post_categories_meta_box',   // 階層型タクソノミー用のコールバック
+        'post',                       // 投稿タイプ
+        'normal',                     // 表示位置（本文下）
+        'default',                    // 優先度
+        [ 'taxonomy' => 'category_color' ] // ← これを指定しないと表示されない！
+    );
+});
+add_action( 'enqueue_block_editor_assets', function() {
+    wp_enqueue_script(
+        'hide-category-style-panel',
+        get_theme_file_uri() . '/assets/js/editor.js',
+        [ 'wp-data', 'wp-edit-post' ],
+        false,
+        true
+    );
+});
+add_action( 'admin_enqueue_scripts', function( $hook ) {
+    if ( $hook === 'post.php' || $hook === 'post-new.php' ) {
+        wp_enqueue_script( 'post' ); // 投稿画面用スクリプト
+        wp_enqueue_script( 'postbox' );
+        wp_enqueue_script( 'wp-lists' );
+    }
+});
 
 function unregister_taxonomy_post_tag(){
     register_taxonomy('post_tag', array());
