@@ -4,9 +4,17 @@ if (have_posts()):
     while (have_posts()):
         the_post(); ?>
 
-        <div class="aspect-[348/482] rounded-xl overflow-hidden">
-            <img src="<?php echo wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "large"); ?>" alt=""
-                 class="w-full h-full object-cover">
+        <div class="relative">
+            <div class="aspect-square rounded-xl overflow-hidden">
+                <img src="<?php echo wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "full"); ?>" alt=""
+                     class="w-full h-full object-cover">
+            </div>
+            <div class="absolute bottom-0 right-0 rounded-tl-md rounded-br-xl flex gap-xs items-baseline grow justify-end-safe text-black bg-gray-bg px-xs pt-xs pb-2xs">
+                <h3 class="font-en text-xs">Author</h3>
+                <p class="text-md leading-none">
+                    <?php the_author_posts_link(); ?>
+                </p>
+            </div>
         </div>
         <hgroup class="flex gap-sm items-baseline mt-sm mb-xl leading-heading">
             <p class="font-en text-lg">Outfit</p>
@@ -50,12 +58,6 @@ if (have_posts()):
                 <?php endif; ?>
             </ul>
 
-            <div class="flex gap-sm items-baseline grow justify-end-safe">
-                <h3 class="font-en text-sm">Author</h3>
-                <p>
-                    <?php the_author_posts_link(); ?>
-                </p>
-            </div>
         </div>
 
         <div class="mt-3xl text-center">
