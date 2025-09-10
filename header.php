@@ -6,6 +6,7 @@
           type="image/x-icon">
     <link rel="icon" href="<?php echo get_theme_file_uri(); ?>/assets/images/favicon.svg" sizes="any"
           type="image/svg+xml">
+    <link rel="apple-touch-icon" href="<?php echo get_theme_file_uri(); ?>/assets/images/apple-touch-icon.png">
     <meta name="viewport" content="width=device-width">
     <?php
     // OGP設定
@@ -31,12 +32,9 @@
     // og:image の設定
     $og_image = get_theme_file_uri() . "/assets/images/ogp.png"; // デフォルト画像
 
-    // トップページ以外で、かつアイキャッチがある場合のみサムネイル画像を使用
-    if (!is_front_page() && !is_home() && has_post_thumbnail()) {
-        $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), "large");
-        if ($thumbnail_url) {
-            $og_image = $thumbnail_url;
-        }
+    // 記事ページで　wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "full")　が取得できれば og_image上書き
+    if (is_single() && get_lzb_meta("main-image")['id']) {
+        $og_image = wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "full");
     }
     ?>
     <meta property="og:url" content="<?php echo esc_url($canonical_url); ?>">
@@ -50,6 +48,7 @@
     ); ?>">
     <meta property="og:image" content="<?php echo esc_url($og_image); ?>">
     <?php wp_head(); ?>
+    <meta name="description" content="<?php echo esc_attr($og_description); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
@@ -65,7 +64,7 @@
 <div class="bg-gray-bg leading-heading">
     <header class="js-drawer-header bg-white sticky top-0 z-50">
         <div class="flex justify-between items-center px-lg py-xl max-w-[400px] mx-auto">
-            <h1 class="nonexistent-class">
+            <h1 class="">
                 <a href="<?php echo home_url(); ?>">
                     <img src="<?php echo get_theme_file_uri(); ?>/assets/images/logo.svg" alt="Hom Style" width="166"
                          height="33">
