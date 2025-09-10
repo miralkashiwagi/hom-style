@@ -96,7 +96,12 @@
             ]); ?>
             <div class="">
                 <h3 class="font-en text-xl mb-2xs">Text Search</h3>
-                <div id="search"><?php get_search_form(); ?></div>
+                <form action="<?php echo home_url()?>">
+                    <div class="grid grid-cols-[1fr_auto] items-center gap-2xs w-full rounded-full border-[1px] border-black">
+                        <input type="search" name="s" value="<?php echo get_search_query()?>" class="px-md py-sm rounded-l-full">
+                        <button type="submit" class="h-[46px] w-[46px] font-icon">search</button>
+                    </div>
+                </form>
             </div>
             <div class="mt-xl">
                 <h3 class="font-en text-xl mb-2xs">Color</h3>

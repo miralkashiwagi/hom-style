@@ -6,7 +6,15 @@ if (is_author() || is_tax("category_color")|| is_tax("category_style")) {
     });
     $title = get_the_archive_title();
     echo "<h2 class='text-md mb-sm font-bold'>".$title."のスタイル一覧</h2>";
-}?>
+}
+//キーワード検索結果ページだったら
+if (is_search()) {
+    //キーワードを取得
+    echo "<h2 class='text-md mb-sm font-bold'>".get_search_query()."の検索結果</h2>";
+}
+
+?>
+
 
 <div class="grid grid-cols-2 gap-xl">
     <?php  while (have_posts()):
