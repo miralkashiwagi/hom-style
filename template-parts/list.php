@@ -1,3 +1,13 @@
+<?php //タクソノミータームまたはauthorページだったら
+if (is_author() || is_tax("category_color")|| is_tax("category_style")) {
+    //タイトルを取得
+    add_filter('get_the_archive_title_prefix', function() {
+        return '';
+    });
+    $title = get_the_archive_title();
+    echo "<h2 class='text-md mb-sm font-bold'>".$title."のスタイル一覧</h2>";
+}?>
+
 <div class="grid grid-cols-2 gap-xl">
     <?php  while (have_posts()):
         the_post();?>
@@ -39,4 +49,4 @@
     </a>
     <?php endwhile; ?>
 </div>
-<?php the_posts_pagination();?>
+<?php tailwind_posts_pagination();?>

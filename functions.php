@@ -52,58 +52,96 @@ function set_post_default_template( $args, $post_type ) {
 
 add_filter( 'register_post_type_args', 'set_post_default_template', 20, 2 );
 
+function tailwind_posts_pagination() {
+    $pages = paginate_links( array(
+        'type' => 'array', // リンクを配列として取得
+        'prev_text' => 'chevron_left',
+        'next_text' => 'chevron_right',
+    ) );
 
-/*
- * 投稿保存時に LazyBlockのmain-imageフィールドで投稿サムネイルを上書きする
- * */
-//add_action("save_post", "handle_save_post_thumbnail", 5);
-//
-//function handle_save_post_thumbnail($post_id)
-//{
-//    // 引数の数に関係なく、最初の引数（post_id）のみを使用
-//
-//    // 投稿が存在するかチェック
-//    $post = get_post($post_id);
-//    if (!$post) {
-//        return;
-//    }
-//
-//    // ユーザーの権限チェック（管理画面からのリクエストの場合のみ）
-//    if (is_admin() && !current_user_can("edit_post", $post_id)) {
-//        return;
-//    }
-//
-//    // スケジューリングを使用して処理を遅延実行
-//    if (!wp_next_scheduled("set_thumbnail_delayed", [$post_id])) {
-//        wp_schedule_single_event(time() + 1, "set_thumbnail_delayed", [
-//            $post_id,
-//        ]);
-//    }
-//}
-//
-//// カスタムイベントのハンドラー
-//add_action("set_thumbnail_delayed", "set_thumbnail_by_meta");
-//
-//function set_thumbnail_by_meta($post_id)
-//{
-//    //プラグインの存在確認
-//    if (!function_exists("get_lzb_meta")) {
-//        return;
-//    }
-//
-//    // 投稿が存在するかチェック
-//    $post = get_post($post_id);
-//    if (!$post) {
-//        return;
-//    }
-//
-//    // Lazy Blocksのメタデータを取得
-//    $image_data = get_lzb_meta("main-image", $post_id);
-//    // メタデータの存在確認
-//    if (is_array($image_data) && isset($image_data["id"])) {
-//        $image_id = $image_data["id"];
-//        if ($image_id && is_numeric($image_id)) {
-//            $result = set_post_thumbnail($post_id, $image_id);
-//        }
-//    }
-//}
+    if ( is_array( $pages ) ) {
+        // nextボタンとprevボタンの存在をチェック
+        $has_next = false;
+        $has_prev = false;
+        foreach ( $pages as $page ) {
+            if ( strpos( $page, 'class="next page-numbers"' ) !== false ) {
+                $has_next = true;
+            }
+            if ( strpos( $page, 'class="prev page-numbers"' ) !== false ) {
+                $has_prev = true;
+            }
+        }
+
+        $modified_pages = array();
+
+        foreach ( $pages as $page ) {
+            // prevボタンのclass属性を書き換え（非活性状態）
+            $modified_page = str_replace(
+                'class="prev page-numbers"',
+                'class="w-full h-[44px] grid place-items-center border-[2px] border-gray-bg bg-gray-bg text-black rounded-full font-icon"',
+                $page
+            );
+
+            // nextボタンのclass属性を書き換え
+            $modified_page = str_replace(
+                'class="next page-numbers"',
+                'class="w-full h-[44px] grid place-items-center border-[2px] border-gray-bg bg-gray-bg text-black rounded-full font-icon"',
+                $modified_page
+            );
+
+            // 通常のページリンクのclass属性を書き換え
+            $modified_page = str_replace(
+                'class="page-numbers"',
+                'class="w-[44px] h-[44px] grid place-items-center border-[2px] border-gray-bg bg-gray-bg text-black font-en rounded-full hover:border-gray-text transition-colors"',
+                $modified_page
+            );
+
+            // currentページのclass属性を書き換え
+            $modified_page = str_replace(
+                'class="page-numbers current"',
+                'class="w-[44px] h-[44px] grid place-items-center border-[2px] border-gray-text bg-transparent text-black font-en rounded-full"',
+                $modified_page
+            );
+
+            // dotsのclass属性を書き換え
+            $modified_page = str_replace(
+                'class="page-numbers dots"',
+                'class="w-[44px] h-[44px] grid place-items-center text-black"',
+                $modified_page
+            );
+
+            $modified_pages[] = $modified_page;
+        }
+
+        // nextが存在するが、prevが存在しない場合は非活性なprevボタンを追加
+        if ( $has_next && !$has_prev ) {
+            $disabled_prev = '<span class="opacity-40 w-full h-[44px] grid place-items-center border-[2px] border-gray-bg bg-gray-bg text-black rounded-full font-icon">chevron_left</span>';
+            array_unshift( $modified_pages, $disabled_prev );
+        }
+        //prevが存在するが、nextが存在しない場合は非活性なnextボタンを追加
+        if ( !$has_next && $has_prev ) {
+            $disabled_next = '<span class="opacity-40 w-full h-[44px] grid place-items-center border-[2px] border-gray-bg bg-gray-bg text-black rounded-full font-icon">chevron_right</span>';
+            array_push( $modified_pages, $disabled_next );
+        }
+
+        if ( ! empty( $modified_pages ) ) {
+            echo '<nav aria-label="ページネーション" class="pt-3xl">';
+            echo '<ul class="flex items-center justify-center gap-xs flex-wrap">';
+            foreach ( $modified_pages as $page ) {
+                if( strpos( $page, 'chevron_left' ) !== false ){
+
+                    echo '<li class="order-1 w-[calc(50%-6px)] mb-md">' . $page . '</li>';
+                    continue;
+                }
+                if( strpos( $page, 'chevron_right' ) !== false ){
+
+                    echo '<li class="order-2 w-[calc(50%-6px)] mb-md">' . $page . '</li>';
+                    continue;
+                }
+                echo '<li class="order-3">' . $page . '</li>';
+            }
+            echo '</ul>';
+            echo '</nav>';
+        }
+    }
+}
