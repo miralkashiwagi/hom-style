@@ -22,12 +22,26 @@ if (is_search()) {
         while (have_posts()):
             the_post();
             $post_count++; // カウンターをインクリメント
+
+            //投稿日から3日以内の投稿か
+            $is_new = false;
+            $post_date = get_the_date('Y-m-d');
+            $today = wp_date('Y-m-d');
+            $diff = date_diff(date_create($post_date), date_create($today));
+            if ($diff->format('%R%a') <= 3) {
+                $is_new = true;
+            }
             ?>
             <a href="<?php the_permalink(); ?>" class="block">
-                <div class="aspect-[348/482] rounded-md overflow-hidden">
-                    <img src="<?php echo wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "medium_large"); ?>"
-                         alt="" class="w-full h-full object-cover"<?php echo ($post_count > 4) ? ' loading="lazy"' : 'fetchpriority="high"'; ?>
-                    >
+                <div class="relative">
+                    <?php if ($is_new): ?>
+                        <span class="inline-grid absolute font-en text-xs place-content-center pr-2xs rounded-br-sm bg-white">New</span>
+                    <?php endif; ?>
+                    <div class="aspect-[348/482] rounded-md overflow-hidden">
+                        <img src="<?php echo wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "medium_large"); ?>"
+                             alt="" class="w-full h-full object-cover"<?php echo ($post_count > 4) ? ' loading="lazy"' : 'fetchpriority="high"'; ?>
+                        >
+                    </div>
                 </div>
                 <div class="flex flex-col gap-xs">
                     <div class="p-xs pb-0">
