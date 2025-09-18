@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="[scrollbar-gutter:stable]">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="<?php echo get_theme_file_uri(); ?>/assets/images/favicon.ico" sizes="48x48"
@@ -59,7 +59,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" media="print"
           onload="this.media='all'">
 </head>
-<body <?php body_class("bg-gray-bg"); ?>>
+<body <?php body_class("bg-gray-bg  has-open:overflow-hidden"); ?>>
 <?php wp_body_open(); ?>
 <div class="bg-gray-bg leading-heading">
     <header class="js-drawer-header bg-white sticky top-0 z-50">
@@ -76,9 +76,9 @@
               <span class="absolute inset-0 m-auto h-[2px] w-[32px] rounded-md bg-black transition-all duration-300 ease-in-out
                            group-aria-[expanded=true]:bg-transparent
                            before:absolute before:-top-[7px] before:block before:h-full before:w-full before:rounded-md before:bg-black before:transition-all before:duration-300 before:ease-in-out before:content-['']
-                           group-aria-[expanded=true]:before:top-0 group-aria-[expanded=true]:before:rotate-45
+                           group-aria-[expanded=true]:before:top-0 group-aria-[expanded=true]:before:rotate-45 starting:group-aria-[expanded=true]:before:-rotate-0
                            after:absolute after:top-[7px] after:block after:h-full after:w-full after:rounded-md after:bg-black after:transition-all after:duration-300 after:ease-in-out after:content-['']
-                           group-aria-[expanded=true]:after:top-0 group-aria-[expanded=true]:after:-rotate-45">
+                           group-aria-[expanded=true]:after:top-0 group-aria-[expanded=true]:after:-rotate-45 starting:group-aria-[expanded=true]:after:-rotate-0">
                 <span class="sr-only">
                   メニューを開閉する
                 </span>
@@ -86,8 +86,8 @@
             </button>
         </div>
     </header>
-    <dialog id="drawer" class="js-drawer-dialog w-full h-full max-w-full max-h-full bg-gray-bg">
-        <nav aria-label="メインメニュー" class="max-w-[400px] mx-auto px-[26px] pt-xl pb-3xl bg-white">
+    <dialog id="drawer" class="js-drawer-dialog w-full overflow-hidden h-full max-w-full max-h-full bg-gray-bg group transition-discrete [transition-property:display,opacity] duration-200 opacity-0 open:opacity-100 starting:open:opacity-0 backdrop:bg-transparent z-50">
+        <nav aria-label="メインメニュー" class="max-w-[400px] overflow-auto h-[calc(100%-92px)] mx-auto px-[26px] pt-xl pb-3xl bg-white group-open:translate-0 starting:group-open:-translate-y-2 transition-transform duration-200">
             <?php wp_nav_menu([
                     "theme_location" => "main-menu",
                     "link_before" => "<span>",
@@ -110,7 +110,7 @@
                         <?php foreach ($color_terms as $color_term): ?>
                             <li>
                                 <a href="<?php echo get_term_link($color_term->term_id); ?>"
-                                   class="block rounded-full bg-gray-bg px-md py-sm"><?php echo $color_term->name; ?></a>
+                                   class="block rounded-full bg-gray-bg px-md min-w-[56px] text-center py-sm"><?php echo $color_term->name; ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -124,7 +124,7 @@
                         <?php foreach ($style_terms as $style_term): ?>
                             <li>
                                 <a href="<?php echo get_term_link($style_term->term_id); ?>"
-                                   class="block rounded-full bg-gray-bg px-md py-sm"><?php echo $style_term->name; ?></a>
+                                   class="block rounded-full bg-gray-bg px-md min-w-[56px] text-center py-sm"><?php echo $style_term->name; ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
