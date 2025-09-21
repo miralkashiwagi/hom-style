@@ -76,9 +76,9 @@
               <span class="absolute inset-0 m-auto h-[2px] w-[32px] rounded-md bg-black transition-all duration-300 ease-in-out
                            group-aria-[expanded=true]:bg-transparent
                            before:absolute before:-top-[7px] before:block before:h-full before:w-full before:rounded-md before:bg-black before:transition-all before:duration-300 before:ease-in-out before:content-['']
-                           group-aria-[expanded=true]:before:top-0 group-aria-[expanded=true]:before:rotate-45 starting:group-aria-[expanded=true]:before:-rotate-0
+                           group-aria-[expanded=true]:before:top-0 group-aria-[expanded=true]:before:rotate-25 starting:group-aria-[expanded=true]:before:-rotate-0
                            after:absolute after:top-[7px] after:block after:h-full after:w-full after:rounded-md after:bg-black after:transition-all after:duration-300 after:ease-in-out after:content-['']
-                           group-aria-[expanded=true]:after:top-0 group-aria-[expanded=true]:after:-rotate-45 starting:group-aria-[expanded=true]:after:-rotate-0">
+                           group-aria-[expanded=true]:after:top-0 group-aria-[expanded=true]:after:-rotate-25 starting:group-aria-[expanded=true]:after:-rotate-0">
                 <span class="sr-only">
                   メニューを開閉する
                 </span>
