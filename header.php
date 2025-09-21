@@ -59,7 +59,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" media="print"
           onload="this.media='all'">
 </head>
-<body <?php body_class("bg-gray-bg  has-open:overflow-hidden"); ?>>
+<body <?php body_class("bg-gray-bg  has-open:overflow-hidden font-base"); ?>>
 <?php wp_body_open(); ?>
 <div class="bg-gray-bg leading-heading">
     <header class="js-drawer-header bg-white sticky top-0 z-50">
@@ -71,7 +71,7 @@
                 </a>
             </h1>
             <button type="button"
-                    class="js-drawer-toggle group relative inline-block h-[44px] w-[64px] cursor-pointer appearance-none rounded-md border-[2px] border-black bg-transparent"
+                    class="focus-visible:outline-2 js-drawer-toggle group relative inline-block h-[44px] w-[64px] cursor-pointer appearance-none rounded-md border-[2px] border-black bg-transparent"
                     aria-expanded="false" aria-controls="drawer">
               <span class="absolute inset-0 m-auto h-[2px] w-[32px] rounded-md bg-black transition-all duration-300 ease-in-out
                            group-aria-[expanded=true]:bg-transparent
@@ -94,10 +94,10 @@
                     "link_after" => "</span>",
             ]); ?>
             <div class="">
-                <h3 class="font-en text-xl mb-2xs">Text Search</h3>
+                <h3 class="font-en text-xl mb-2xs" id="search-label">Text Search</h3>
                 <form action="<?php echo home_url()?>">
                     <div class="grid grid-cols-[1fr_auto] items-center gap-2xs w-full rounded-full border-[1px] border-black">
-                        <input type="search" name="s" value="<?php echo get_search_query()?>" class="px-md py-sm rounded-l-full">
+                        <input type="search" name="s" value="<?php echo get_search_query()?>" class="px-md py-sm rounded-l-full" aria-labelledby="search-label">
                         <button type="submit" class="h-[46px] w-[46px] font-icon">search</button>
                     </div>
                 </form>
