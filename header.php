@@ -62,7 +62,7 @@
 <body <?php body_class("bg-gray-bg  has-open:overflow-hidden font-base"); ?>>
 <?php wp_body_open(); ?>
 <div class="bg-gray-bg leading-heading">
-    <header class="js-drawer-header bg-white sticky top-0 z-50">
+    <header class="js-drawer-header bg-white sticky top-0 z-9999" style="view-transition-name: none">
         <div class="flex justify-between items-center px-lg py-xl max-w-[400px] mx-auto">
             <h1 class="">
                 <a href="<?php echo home_url(); ?>">

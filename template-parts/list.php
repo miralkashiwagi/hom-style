@@ -37,7 +37,7 @@ if (is_search()) {
                     <?php if ($is_new): ?>
                         <span class="inline-grid absolute font-en text-xs place-content-center pr-2xs rounded-br-sm bg-white">New</span>
                     <?php endif; ?>
-                    <div class="aspect-[348/482] rounded-md overflow-hidden">
+                    <div class="aspect-[348/482] rounded-md overflow-hidden bg-gray-bg" style="view-transition-name: thumbnail-<?php echo get_the_ID(); ?>">
                         <img src="<?php echo wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "medium_large"); ?>"
                              alt="" class="w-full h-full object-cover"<?php echo ($post_count > 4) ? ' loading="lazy"' : 'fetchpriority="high"'; ?>
                         >

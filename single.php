@@ -5,9 +5,9 @@ if (have_posts()):
         the_post(); ?>
 
         <div class="relative">
-            <div class="aspect-square rounded-xl overflow-hidden">
+            <div class="aspect-square rounded-xl overflow-hidden bg-gray-bg" style="view-transition-name: thumbnail-<?php echo get_the_ID(); ?>">
                 <img src="<?php echo wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "full"); ?>" alt=""
-                     class="w-full h-full object-cover">
+                     class="w-full h-full object-cover" fetchpriority="high">
             </div>
             <div class="absolute bottom-0 right-0 rounded-tl-md rounded-br-xl flex gap-xs items-baseline grow justify-end-safe text-black bg-gray-bg px-xs pt-xs pb-2xs">
                 <h3 class="font-en text-xs">Author</h3>
