@@ -35,7 +35,7 @@ if (is_search()) {
             <a href="<?php the_permalink(); ?>" class="block">
                 <div class="relative">
                     <?php if ($is_new): ?>
-                        <span class="inline-grid absolute font-en text-xs place-content-center pr-2xs rounded-br-sm bg-white">New</span>
+                        <span class="inline-grid absolute font-en text-xs place-content-center pr-2xs rounded-br-sm bg-white z-10">New</span>
                     <?php endif; ?>
                     <div class="aspect-[348/482] rounded-md overflow-hidden bg-gray-bg" style="view-transition-name: thumbnail-<?php echo get_the_ID(); ?>">
                         <img src="<?php echo wp_get_attachment_image_url(get_lzb_meta("main-image")['id'], "medium_large"); ?>"
