@@ -58,6 +58,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="preload" as="style">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" media="print"
           onload="this.media='all'">
+    <script type="speculationrules">
+        {
+          "prefetch": [{
+            "where": { "href_matches": "/*" },
+            "eagerness": "eager"
+          }],
+          "prerender": [{
+            "where": { "href_matches": "/*" },
+            "eagerness": "moderate"
+          }]
+        }
+    </script>
 </head>
 <body <?php body_class("bg-gray-bg  has-open:overflow-hidden font-base"); ?>>
 <?php wp_body_open(); ?>
